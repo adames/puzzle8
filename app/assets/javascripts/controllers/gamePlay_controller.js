@@ -1,5 +1,6 @@
 $(function(){
   triggered()
+  fetchAdapter()
 })
 
 function makeMove(){
@@ -58,7 +59,12 @@ function swapDOM(){
     firstParent.append(secondSelected)
     secondParent.append(firstSelected)
   }else {
-    alert("nope")
+    // alert("nope")
   }
+}
 
+function fetchAdapter(){
+  fetch("http://localhost:3000/games")
+    .then(res => res.json())
+    .then(response => console.log(response))
 }

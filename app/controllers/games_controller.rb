@@ -1,10 +1,13 @@
 class GamesController < ApplicationController
   def index
-
+    @games = Game.all
+    # byebug
+#     msg = {:token => token, :courseId => courseId}
+    render :json => @games
   end
 
   def create
-
+    @game
   end
 
   def new
