@@ -64,7 +64,14 @@ function swapDOM(){
 }
 
 function fetchAdapter(){
-  fetch("http://localhost:3000/games")
+  fetch("http://localhost:3000/game_images/1")
     .then(res => res.json())
-    .then(response => console.log(response))
+    .then(res => showImage(res))
+}
+
+function showImage(imgObj){
+  let tiles = $('img')
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].src = imgObj[`tile${i + 1}`]
+  }
 }

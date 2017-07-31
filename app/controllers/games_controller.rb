@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game
+    
   end
 
   def new
@@ -19,7 +19,6 @@ class GamesController < ApplicationController
   end
 
   def show
-
   end
 
   def update
