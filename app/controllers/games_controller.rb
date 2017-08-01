@@ -8,7 +8,9 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create
-    byebug
+    @gameImage = GameImage.find(params[:json])
+    @game.game_image = @gameImage
+    @game.save
     render json: @game
   end
 
@@ -17,7 +19,7 @@ class GamesController < ApplicationController
   end
 
   def show
-
+    
   end
 
   def update

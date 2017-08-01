@@ -20,3 +20,16 @@ game_image.tile8 = 'https://i.imgur.com/bNkzzsN.jpg'
 game_image.tile9 = 'https://i.imgur.com/3VWSCWD.jpg'
 game_image.full_image = 'https://i.imgur.com/PiskTV4.jpg'
 game_image.save
+
+game_image2 = GameImage.create({game: test_game})
+game_image2.tile1 = 'https://i.imgur.com/7b0opKX.jpg'
+game_image2.tile2 = 'https://i.imgur.com/62ecHXj.jpg'
+game_image2.tile3 = 'https://i.imgur.com/RJJV9EJ.jpg'
+game_image2.tile4 = 'https://i.imgur.com/izP1ZwS.jpg'
+game_image2.tile5 = 'https://i.imgur.com/nq4uv3y.jpg'
+game_image2.tile6 = 'https://i.imgur.com/o4PXWdY.jpg'
+game_image2.tile7 = 'https://i.imgur.com/dguc5Sa.jpg'
+game_image2.tile8 = 'https://i.imgur.com/bNkzzsN.jpg'
+game_image2.tile9 = 'http://i.imgur.com/uvFEcJN.jpg'
+game_image2.full_image = 'http://i.imgur.com/uvFEcJN.jpg'
+game_image2.save

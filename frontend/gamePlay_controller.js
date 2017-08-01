@@ -1,21 +1,10 @@
 $(function(){
   hideGame()
   getImages()
-  // startGameButton()
-
-  // triggered()
-  // getImage(1)
-
 })
 
 function hideGame(){
   $('table').hide()
-}
-
-function getImages(){
-  fetch(`http://localhost:3000/game_images/`)
-    .then(res => res.json())
-    .then(res => displayImages(res))
 }
 
 function displayImages(res){
@@ -32,20 +21,16 @@ function selectImage(){
   })
 }
 
-function startGameButton(){
-  $('#startGame').on('click', function(event){
-
-
-  })
+function showGame(id){
+  $('table').show()
+  hideStart()
+  tileEvent()
+  getImage(id)
 }
 
-
-
-
-
-
-
-
+function hideStart(){
+  $('#imageIndex').remove()
+}
 
 let selected = "tile0"
 
@@ -85,7 +70,7 @@ function validMove(first, second){
   }
 }
 
-function triggered(){
+function tileEvent(){
   $('div').on('click', function(event){
     makeMove()
   })
@@ -102,6 +87,7 @@ function swapDOM(){
     secondParent.append(firstSelected)
   }else {
     // alert("nope")
+    console.log('Invalid Move: nah brahhh')
   }
 }
 
