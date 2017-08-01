@@ -1,4 +1,4 @@
 class Game < ApplicationRecord
-  has_one :game_image
+  belongs_to :game_image
 
 end

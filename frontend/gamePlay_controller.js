@@ -16,12 +16,16 @@ function displayImages(res){
 
 function selectImage(){
   $('#imageIndex').on('click', function(event){
+    // debugger
     var imageID = parseInt(event.target.id.replace("image", ""))
     createGame(imageID)
+
+
   })
 }
 
 function showGame(id){
+  debugger
   $('table').show()
   hideStart()
   tileEvent()
@@ -91,9 +95,11 @@ function swapDOM(){
   }
 }
 
-function showImage(imgObj){
-  let tiles = $('img')
-  for (var i = 0; i < tiles.length; i++) {
-    tiles[i].src = imgObj[`tile${i + 1}`]
-  }
+function showImage(){
+  debugger
+  // let imgObj = store.games[store.games.length - 1].game_image_id
+  // let tiles = $('img')
+  // for (var i = 0; i < tiles.length; i++) {
+  //   tiles[i].src = imgObj[`tile${i + 1}`]
+  // }
 }

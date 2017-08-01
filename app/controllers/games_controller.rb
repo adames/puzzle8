@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create
+    @game = Game.new
     @gameImage = GameImage.find(params[:json])
     @game.game_image = @gameImage
     @game.save
@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def update

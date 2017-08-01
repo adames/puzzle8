@@ -6,9 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-test_game = Game.create
-
-game_image = GameImage.create({game: test_game})
+game_image = GameImage.new
 game_image.tile1 = 'https://i.imgur.com/7b0opKX.jpg'
 game_image.tile2 = 'https://i.imgur.com/62ecHXj.jpg'
 game_image.tile3 = 'https://i.imgur.com/RJJV9EJ.jpg'
@@ -21,7 +19,7 @@ game_image.tile9 = 'https://i.imgur.com/3VWSCWD.jpg'
 game_image.full_image = 'https://i.imgur.com/PiskTV4.jpg'
 game_image.save
 
-game_image2 = GameImage.create({game: test_game})
+game_image2 = GameImage.new
 game_image2.tile1 = 'https://i.imgur.com/7b0opKX.jpg'
 game_image2.tile2 = 'https://i.imgur.com/62ecHXj.jpg'
 game_image2.tile3 = 'https://i.imgur.com/RJJV9EJ.jpg'

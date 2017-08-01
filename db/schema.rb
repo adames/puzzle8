@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 20170731194023) do
 
   create_table "game_images", force: :cascade do |t|
-    t.integer "game_id"
     t.string "tile1"
     t.string "tile2"
     t.string "tile3"
@@ -29,9 +28,11 @@ ActiveRecord::Schema.define(version: 20170731194023) do
   end
 
   create_table "games", force: :cascade do |t|
+    t.integer "game_image_id"
     t.integer "moves", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["game_image_id"], name: "index_games_on_game_image_id"
   end
 
 end
