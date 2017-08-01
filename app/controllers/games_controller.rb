@@ -7,11 +7,9 @@ class GamesController < ApplicationController
   end
 
   def create
-    
-  end
-
-  def new
-
+    @game = Game.create
+    byebug
+    render json: @game
   end
 
   def edit
@@ -19,6 +17,7 @@ class GamesController < ApplicationController
   end
 
   def show
+
   end
 
   def update

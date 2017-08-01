@@ -1,7 +1,53 @@
 $(function(){
-  triggered()
-  fetchAdapter()
+  hideGame()
+  getImages()
+  // startGameButton()
+
+  // triggered()
+  // getImage(1)
+
 })
+
+function hideGame(){
+  $('table').hide()
+}
+
+function getImages(){
+  fetch(`http://localhost:3000/game_images/`)
+    .then(res => res.json())
+    .then(res => displayImages(res))
+}
+
+function displayImages(res){
+  res.forEach(function(image){
+    $('#imageIndex').append(`<img id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
+  })
+  selectImage()
+}
+
+function selectImage(){
+  $('#imageIndex').on('click', function(event){
+    var imageID = parseInt(event.target.id.replace("image", ""))
+    createGame(imageID)
+  })
+}
+
+function startGameButton(){
+  $('#startGame').on('click', function(event){
+
+
+  })
+}
+
+
+
+
+
+
+
+
+
+let selected = "tile0"
 
 function makeMove(){
   if(selected === 'tile0'){
@@ -37,11 +83,7 @@ function validMove(first, second){
   }else {
     return false
   }
-
 }
-
-
-let selected = "tile0"
 
 function triggered(){
   $('div').on('click', function(event){
@@ -61,12 +103,6 @@ function swapDOM(){
   }else {
     // alert("nope")
   }
-}
-
-function fetchAdapter(){
-  fetch("http://localhost:3000/game_images/1")
-    .then(res => res.json())
-    .then(res => showImage(res))
 }
 
 function showImage(imgObj){
