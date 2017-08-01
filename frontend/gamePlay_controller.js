@@ -1,6 +1,6 @@
 $(function(){
   hideGame()
-  getImages()
+  Adapter.getImages()
 })
 
 function hideGame(){
@@ -18,7 +18,7 @@ function selectImage(){
   $('#imageIndex').on('click', function(event){
     // debugger
     var imageID = parseInt(event.target.id.replace("image", ""))
-    createGame(imageID)
+    Adapter.createGame(imageID)
 
 
   })
@@ -28,7 +28,7 @@ function showGame(id){
   $('table').show()
   hideStart()
   tileEvent()
-  getImage(id)
+  Adapter.getImage(id)
 }
 
 function hideStart(){
