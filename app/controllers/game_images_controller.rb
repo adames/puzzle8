@@ -1,7 +1,6 @@
 class GameImagesController < ApplicationController
   def index
     @game_images = GameImage.all
-    # byebug
 #     msg = {:token => token, :courseId => courseId}
     render :json => @game_images
   end

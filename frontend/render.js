@@ -14,11 +14,15 @@ class Render {
   }
 
   static showImage(){
-    let imgID = store.games[store.games.length - 1].game_image_id
+    let gameObj = store.games[store.games.length - 1]
+    let imgID = gameObj.game_image_id
     let imgObj = store.gameImages.filter((image) => image.id === imgID)[0]
+    gameObj.tiles_order = gameObj.tiles_order.match(/\d/g).map(n => parseInt(n))
     let tiles = $('img')
+    let solution = []
     for (var i = 0; i < tiles.length; i++) {
-      tiles[i].src = imgObj[`tile${i + 1}`]
+      console.log(gameObj.tiles_order)
+      tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
     }
   }
 }

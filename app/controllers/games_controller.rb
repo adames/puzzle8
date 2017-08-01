@@ -10,6 +10,7 @@ class GamesController < ApplicationController
     @game = Game.new
     @gameImage = GameImage.find(params[:json])
     @game.game_image = @gameImage
+    @game.randomize_tiles
     @game.save
     render json: @game
   end
