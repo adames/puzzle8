@@ -89,14 +89,13 @@ function swapDOM(){
     firstParent.append(secondSelected)
     secondParent.append(firstSelected)
   }else {
-    // alert("nope")
     console.log('Invalid Move: nah brahhh')
   }
 }
 
 function showImage(){
-  debugger
-  let imgObj = store.games[store.games.length - 1].game_image_id
+  let imgID = store.games[store.games.length - 1].game_image_id
+  let imgObj = store.gameImages.filter((image) => image.id === imgID)[0]
   let tiles = $('img')
   for (var i = 0; i < tiles.length; i++) {
     tiles[i].src = imgObj[`tile${i + 1}`]
