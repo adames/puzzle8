@@ -7,7 +7,7 @@ class Adapter {
         store.gameImages.push(res)
         return res
       })
-      .then(()=> showImage())
+      .then(()=> Render.showImage())
   }
 
   static createGame(imageID){
@@ -22,16 +22,9 @@ class Adapter {
     .then(()=> showGame(imageID))
   }
 
-
-  // static postImage(id){
-  //   fetch('http://localhost:3000/game_images/${id}', {
-  //     method: 'POST'
-  //   })
-  // }
-
   static getImages(){
     fetch(`http://localhost:3000/game_images/`)
       .then(res => res.json())
-      .then(res => displayImages(res))
+      .then(res => Render.displayImages(res))
   }
 }

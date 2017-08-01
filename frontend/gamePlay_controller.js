@@ -1,55 +1,40 @@
 $(function(){
-  hideGame()
+  Render.hideGame()
   Adapter.getImages()
 })
 
-function hideGame(){
-  $('table').hide()
-}
 
-function displayImages(res){
-  res.forEach(function(image){
-    $('#imageIndex').append(`<img id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
-  })
-  selectImage()
-}
+
+
 
 function selectImage(){
   $('#imageIndex').on('click', function(event){
     // debugger
     var imageID = parseInt(event.target.id.replace("image", ""))
     Adapter.createGame(imageID)
-
-
   })
 }
 
 function showGame(id){
   $('table').show()
-  hideStart()
+  Render.removeStart()
   tileEvent()
   Adapter.getImage(id)
 }
 
-function hideStart(){
-  $('#imageIndex').remove()
-}
 
 let selected = "tile0"
 
 function makeMove(){
   if(selected === 'tile0'){
-    event.target.style.color = "red"
     selected = `${event.target.parentElement.id}`
   }else if(selected !== 'tile0'){
-    event.target.style.color = "green"
     swapDOM()
     selected = 'tile0'
   }
 }
 
 function validMove(first, second){
-  // debugger
   let firstParent = first.parentElement
   let secondParent = second.parentElement
   let val = parseInt(firstParent.id.replace("space", ""))
@@ -65,7 +50,6 @@ function validMove(first, second){
   availableTiles.push(val - 3)
   availableTiles.push(val + 3)
 
-  // debugger;
   if(availableTiles.includes(val2)){
     return true
   }else {
@@ -84,20 +68,10 @@ function swapDOM(){
   let secondSelected = event.target
   let firstParent = $(`#${selected}`)[0]
   let secondParent = event.target.parentElement
-  // debugger
   if(validMove(firstSelected, secondSelected)){
     firstParent.append(secondSelected)
     secondParent.append(firstSelected)
   }else {
     console.log('Invalid Move: nah brahhh')
-  }
-}
-
-function showImage(){
-  let imgID = store.games[store.games.length - 1].game_image_id
-  let imgObj = store.gameImages.filter((image) => image.id === imgID)[0]
-  let tiles = $('img')
-  for (var i = 0; i < tiles.length; i++) {
-    tiles[i].src = imgObj[`tile${i + 1}`]
   }
 }
