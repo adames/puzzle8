@@ -23,8 +23,8 @@ class Adapter {
   }
 
   static getImages(){
-    fetch(`http://localhost:3000/game_images/`)
+    return fetch(`http://localhost:3000/game_images/`)
       .then(res => res.json())
-      .then(res => Render.displayImages(res))
+
   }
 }

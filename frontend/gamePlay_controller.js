@@ -1,15 +1,17 @@
 $(function(){
-  Render.hideGame()
-  Adapter.getImages()
+  gameSetup()
 })
 
+let selected = "tile0"
 
-
-
+function gameSetup(){
+  Render.hideGame()
+  let imgs = Adapter.getImages()
+  imgs.then(res => Render.displayImages(res))
+}
 
 function selectImage(){
   $('#imageIndex').on('click', function(event){
-    // debugger
     var imageID = parseInt(event.target.id.replace("image", ""))
     Adapter.createGame(imageID)
   })
@@ -21,9 +23,6 @@ function showGame(id){
   tileEvent()
   Adapter.getImage(id)
 }
-
-
-let selected = "tile0"
 
 function makeMove(){
   if(selected === 'tile0'){
