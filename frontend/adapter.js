@@ -4,11 +4,9 @@ function getImage(id){
     .then(res => res.json())
     .then(function(res){
       store.gameImages.push(res)
-      // console.log('inside getimages')
-      // console.log(store)
       return res
     })
-    .then(showImage())
+    .then(()=> showImage())
 }
 
 function createGame(imageID){
@@ -20,16 +18,11 @@ function createGame(imageID){
     method: 'POST',
     body: data
   }).then(res => res.json())
-  // .then(res => console.log(res))
   .then(res => {
-  // console.log('inside createGame')
-  // console.log(store)
-
   // debugger
   store.games.push(res)})
-
   // what do we do with showgame now
-  .then(()=> showGame(imageID)
+  .then(()=> showGame(imageID))
 }
 
 
@@ -40,7 +33,6 @@ function postAdapter(id){
 }
 
 function getImages(){
-  // debugger
   fetch(`http://localhost:3000/game_images/`)
     .then(res => res.json())
     .then(res => displayImages(res))
