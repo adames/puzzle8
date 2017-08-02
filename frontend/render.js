@@ -24,5 +24,6 @@ class Render {
       console.log(gameObj.tiles_order)
       tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
     }
+    getSolution()
   }
 }

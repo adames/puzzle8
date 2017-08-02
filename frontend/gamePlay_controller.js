@@ -33,6 +33,22 @@ function makeMove(){
   }
 }
 
+
+function getSolution(){
+  let userInput = $('img')
+  let solution = store.gameImages[store.gameImages.length - 1]
+
+  for(var i = 0; i < userInput.length; i++) {
+    if(eval(`store.gameImages[store.gameImages.length - 1].tile${i+1}`) === userInput[i].src){
+      console.log('correct position')
+    }else {
+      console.log('not correct position')
+    }
+  }
+
+}
+
+
 function validMove(first, second){
   let firstParent = first.parentElement
   let secondParent = second.parentElement
