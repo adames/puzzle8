@@ -92,7 +92,7 @@ function checkSolution(){
   // ^^ needs to be refactored into controller function ^^
   let userTiles = $('.tile')
   let counter = 0
-  for(var i = 0; i < userTiles.length; i++) {
+  for(var i = 0; i < userTiles.length - 1; i++) {
     if(eval(`solution.tile${i+1}`) === userTiles[i].src){
       console.log('correct position')
       counter++
@@ -101,7 +101,7 @@ function checkSolution(){
       console.log('not correct position')
     }
   }
-  if(counter === 9){
+  if(counter === 8 && $('#space9')[0].children[0].style.backgroundColor === "black"){
     finishGame()
   }
 }
