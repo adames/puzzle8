@@ -21,9 +21,8 @@ class Render {
     let tiles = $('img')
     let solution = []
     for (var i = 0; i < tiles.length; i++) {
-      console.log(gameObj.tiles_order)
       tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
     }
-    getSolution()
+    checkSolution()
   }
 }

@@ -9,57 +9,48 @@ function gameSetup(){
   let imgs = Adapter.getImages()
   imgs.then(res => Render.displayImages(res))
 }
-
 function selectImage(){
   $('#imageIndex img').on('click', function(event){
     var imageID = parseInt(event.target.id.replace("image", ""))
     let username = $('#username').val()
     username === "" ? username = "Guest" : username
-    Adapter.createGame(imageID, username)
+    startGame(imageID, username)
   })
 }
+
+function startGame(imageID, username){
+  let userJSON = Adapter.postUser(username, imageID)
+  userJSON.then(res => {
+  store.users.push(res)
+  return res
+  })
+  .then((res)=> Adapter.postGame(imageID, res)
+  .then(res => {store.games.push(res)})
+  .then(()=> showGame(imageID)))
+}
+
+
+
 
 function showGame(id){
   $('table').show()
   Render.removeStart()
   tileEvent()
-  Adapter.getImage(id)
-}
 
-function makeMove(){
-  if(selected === 'tile0'){
-    selected = `${event.target.parentElement.id}`
-    event.target.style.borderStyle = 'solid'
-    event.target.style.borderColor = 'blue'
-  }else if(selected !== 'tile0'){
-    swapDOM()
-    selected = 'tile0'
-  }
+  let imageJSON = Adapter.getImage(id)
+  imageJSON.then(function(res){
+    store.images.push(res)
+    return res
+  })
+  .then(()=> Render.showImage())
 }
 
 
-function getSolution(){
-  let gameObj = store.games[store.games.length - 1]
-  let imgID = gameObj.image_id
-  let solution = store.images.filter((image) => image.id === imgID)[0]
-  // ^^ needs to be refactored into controller function ^^
-  let userTiles = $('img')
-  let counter = 0
-  for(var i = 0; i < userTiles.length; i++) {
-    if(eval(`solution.tile${i+1}`) === userTiles[i].src){
-      console.log('correct position')
-      counter++
-    }else {
-      counter = 0
-      console.log('not correct position')
-    }
-  }
-  if(counter === 9){
-    alert('you dahhhh man')
-  }
-
+function tileEvent(){
+  $('div').on('click', function(event){
+    makeMove()
+  })
 }
-
 
 function validMove(first, second){
   let firstParent = first.parentElement
@@ -84,10 +75,37 @@ function validMove(first, second){
   }
 }
 
-function tileEvent(){
-  $('div').on('click', function(event){
-    makeMove()
-  })
+function makeMove(){
+  if(selected === 'tile0'){
+    selected = `${event.target.parentElement.id}`
+    event.target.style.borderStyle = 'solid'
+    event.target.style.borderColor = 'blue'
+  }else if(selected !== 'tile0'){
+    swapDOM()
+    selected = 'tile0'
+  }
+}
+
+function checkSolution(){
+  let gameObj = store.games[store.games.length - 1]
+  let imgID = gameObj.image_id
+  let solution = store.images.filter((image) => image.id === imgID)[0]
+  // ^^ needs to be refactored into controller function ^^
+  let userTiles = $('img')
+  let counter = 0
+  for(var i = 0; i < userTiles.length; i++) {
+    if(eval(`solution.tile${i+1}`) === userTiles[i].src){
+      console.log('correct position')
+      counter++
+    }else {
+      counter = 0
+      console.log('not correct position')
+    }
+  }
+  if(counter === 9){
+    alert('you dahhhh man')
+  }
+
 }
 
 function swapDOM(){
@@ -103,5 +121,5 @@ function swapDOM(){
   }
   firstSelected.style.borderStyle = ''
   secondSelected.style.borderStyle = ''
-  getSolution()
+  checkSolution()
 }
