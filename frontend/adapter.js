@@ -29,4 +29,21 @@ class Adapter {
     return fetch(`http://localhost:3000/images/`)
       .then(res => res.json())
   }
+
+
+
+
+  static postUserUpdate(userObj){
+    var data = new FormData();
+    data.append( "userData", JSON.stringify('hello'));
+    fetch(`http://localhost:3000/users/1`, {
+      method: 'PUT',
+      body: data
+    }).then(res => console.log(res))
+  }
+
+  static postDbUpdate(){
+    let userObj = store.users[store.users.length - 1]
+    Adapter.postUserUpdate(userObj)
+  }
 }

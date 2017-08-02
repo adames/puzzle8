@@ -29,9 +29,6 @@ function startGame(imageID, username){
   .then(()=> showGame(imageID)))
 }
 
-
-
-
 function showGame(id){
   $('table').show()
   Render.removeStart()
@@ -103,10 +100,14 @@ function checkSolution(){
     }
   }
   if(counter === 9){
-    alert('you dahhhh man')
+    debugger
+    store.users[store.users.length - 1].wins++
+    Adapter.postDbUpdate()
   }
 
 }
+
+
 
 function swapDOM(){
   let firstSelected = $(`#${selected}`)[0].children[0]
@@ -116,6 +117,7 @@ function swapDOM(){
   if(validMove(firstSelected, secondSelected)){
     firstParent.append(secondSelected)
     secondParent.append(firstSelected)
+    store.games[store.games.length - 1].moves++
   }else {
     console.log('Invalid Move: nah brahhh')
   }
