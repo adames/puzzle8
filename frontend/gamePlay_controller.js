@@ -27,6 +27,8 @@ function showGame(id){
 function makeMove(){
   if(selected === 'tile0'){
     selected = `${event.target.parentElement.id}`
+    event.target.style.borderStyle = 'solid'
+    event.target.style.borderColor = 'blue'
   }else if(selected !== 'tile0'){
     swapDOM()
     selected = 'tile0'
@@ -35,15 +37,23 @@ function makeMove(){
 
 
 function getSolution(){
-  let userInput = $('img')
-  let solution = store.gameImages[store.gameImages.length - 1]
-
-  for(var i = 0; i < userInput.length; i++) {
-    if(eval(`store.gameImages[store.gameImages.length - 1].tile${i+1}`) === userInput[i].src){
+  let gameObj = store.games[store.games.length - 1]
+  let imgID = gameObj.game_image_id
+  let solution = store.gameImages.filter((image) => image.id === imgID)[0]
+  // ^^ needs to be refactored into controller function ^^
+  let userTiles = $('img')
+  let counter = 0
+  for(var i = 0; i < userTiles.length; i++) {
+    if(eval(`solution.tile${i+1}`) === userTiles[i].src){
       console.log('correct position')
+      counter++
     }else {
+      counter = 0
       console.log('not correct position')
     }
+  }
+  if(counter === 9){
+    alert('you dahhhh man')
   }
 
 }
@@ -89,4 +99,7 @@ function swapDOM(){
   }else {
     console.log('Invalid Move: nah brahhh')
   }
+  firstSelected.style.borderStyle = ''
+  secondSelected.style.borderStyle = ''
+  getSolution()
 }
