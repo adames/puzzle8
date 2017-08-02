@@ -10,7 +10,7 @@ function gameSetup(){
   imgs.then(res => Render.displayImages(res))
 }
 function selectImage(){
-  $('#imageIndex img').on('click', function(event){
+  $('#imageIndex').on('click', function(event){
     var imageID = parseInt(event.target.id.replace("image", ""))
     let username = $('#username').val()
     username === "" ? username = "Guest" : username
@@ -88,7 +88,7 @@ function checkSolution(){
   let imgID = gameObj.image_id
   let solution = store.images.filter((image) => image.id === imgID)[0]
   // ^^ needs to be refactored into controller function ^^
-  let userTiles = $('img')
+  let userTiles = $('.tile')
   let counter = 0
   for(var i = 0; i < userTiles.length; i++) {
     if(eval(`solution.tile${i+1}`) === userTiles[i].src){
@@ -100,14 +100,17 @@ function checkSolution(){
     }
   }
   if(counter === 9){
-    debugger
-    store.users[store.users.length - 1].wins++
-    Adapter.postDbUpdate()
+    finishGame()
   }
-
 }
 
-
+function finishGame(){
+  store.users[store.users.length - 1].wins++
+  Adapter.postDbUpdate()
+  $('#game_finish').fadeToggle()
+  $('table').fadeToggle()
+  store = {games: [], images: [], users: []}
+}
 
 function swapDOM(){
   let firstSelected = $(`#${selected}`)[0].children[0]

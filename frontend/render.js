@@ -11,14 +11,16 @@ class Render {
   }
   static hideGame(){
     $('table').hide()
+    $('#game_finish').hide()
   }
 
   static showImage(){
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
     let imgObj = store.images.filter((image) => image.id === imgID)[0]
+    $('#full_image')[0].src = imgObj.full_image
     gameObj.tiles_order = gameObj.tiles_order.match(/\d/g).map(n => parseInt(n))
-    let tiles = $('img')
+    let tiles = $('.tile')
     let solution = []
     for (var i = 0; i < tiles.length; i++) {
       tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]

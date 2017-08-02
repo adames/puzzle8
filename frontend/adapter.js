@@ -36,7 +36,7 @@ class Adapter {
     return fetch(`http://localhost:3000/users/${userObj.id}`, {
       method: 'PATCH',
       body: data
-    }).then(res => res.json())
+    })
   }
 
   static postGameUpdate(gameObj){
@@ -45,7 +45,7 @@ class Adapter {
     return fetch(`http://localhost:3000/games/${gameObj}`, {
       method: 'PATCH',
       body: data
-    }).then(res => res.json())
+    })
   }
 
   static postDbUpdate(){
