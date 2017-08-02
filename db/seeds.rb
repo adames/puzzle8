@@ -31,3 +31,29 @@ image2.tile8 = 'https://i.imgur.com/bNkzzsN.jpg'
 image2.tile9 = 'http://i.imgur.com/uvFEcJN.jpg'
 image2.full_image = 'http://i.imgur.com/uvFEcJN.jpg'
 image2.save
+
+image3 = Image.new
+image3.tile1 = 'http://i.imgur.com/4w9qy3x.jpg'
+image3.tile2 = 'http://i.imgur.com/e7ubbTS.jpg'
+image3.tile3 = 'http://i.imgur.com/8xgzdKo.jpg'
+image3.tile4 = 'http://i.imgur.com/MSfqOiG.jpg'
+image3.tile5 = 'http://i.imgur.com/yberxhG.jpg'
+image3.tile6 = 'http://i.imgur.com/gJLPJOF.jpg'
+image3.tile7 = 'http://i.imgur.com/z6PVFDr.jpg'
+image3.tile8 = 'http://i.imgur.com/58i3QGU.jpg'
+image3.tile9 = 'http://i.imgur.com/6TiB3Ms.jpg'
+image3.full_image = 'http://i.imgur.com/uBeiVfF.jpg'
+image3.save
+
+image4 = Image.new
+image4.tile1 = 'http://i.imgur.com/F2WueY8.jpg'
+image4.tile2 = 'http://i.imgur.com/nhUtU2G.jpg'
+image4.tile3 = 'http://i.imgur.com/u3clO3E.jpg'
+image4.tile4 = 'http://i.imgur.com/5VEsRcE.jpg'
+image4.tile5 = 'http://i.imgur.com/KM4JWEf.jpg'
+image4.tile6 = 'http://i.imgur.com/El4E4pM.jpg'
+image4.tile7 = 'http://i.imgur.com/jmwhvTt.jpg'
+image4.tile8 = 'http://i.imgur.com/Yj8ECFp.jpg'
+image4.tile9 = 'http://i.imgur.com/b9kgMFB.jpg'
+image4.full_image = 'http://i.imgur.com/j4Ci2yc.jpg'
+image4.save
