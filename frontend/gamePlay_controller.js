@@ -75,8 +75,10 @@ function validMove(first, second){
 function makeMove(){
   if(selected === 'tile0'){
     selected = `${event.target.parentElement.id}`
-    event.target.style.borderStyle = 'solid'
-    event.target.style.borderColor = 'blue'
+    event.target.className = "tile z-depth-5"
+    event.target.style.width = "160px"
+    event.target.style.height = "160px"
+    // event.target.style.borderColor = 'blue'
   }else if(selected !== 'tile0'){
     swapDOM()
     selected = 'tile0'
@@ -131,7 +133,11 @@ function swapDOM(){
   }else {
     console.log('Invalid Move: nah brahhh')
   }
-  firstSelected.style.borderStyle = ''
-  secondSelected.style.borderStyle = ''
+  firstSelected.className = 'tile'
+  secondSelected.className = 'tile'
+  firstSelected.style.width = '150px'
+  firstSelected.style.height = '150px'
+  secondSelected.style.width = '150px'
+  secondSelected.style.height = '150px'
   checkSolution()
 }

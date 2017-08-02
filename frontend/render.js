@@ -1,7 +1,7 @@
 class Render {
   static displayImages(res){
     res.forEach(function(image){
-      $('#imageIndex').append(`<img id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
+      $('#imageIndex').append(`<img class="z-depth-2" id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
     })
     selectImage()
   }
