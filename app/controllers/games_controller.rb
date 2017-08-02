@@ -7,11 +7,13 @@ class GamesController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:userID])
     @game = Game.new
-    @image = Image.find(params[:json])
+    @image = Image.find(params[:imageID])
     @game.image = @image
     @game.randomize_tiles
-    @game.save
+    @user.games << @game
+    @user.save
     render json: @game
   end
 

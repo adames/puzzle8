@@ -11,9 +11,11 @@ function gameSetup(){
 }
 
 function selectImage(){
-  $('#imageIndex').on('click', function(event){
+  $('#imageIndex img').on('click', function(event){
     var imageID = parseInt(event.target.id.replace("image", ""))
-    Adapter.createGame(imageID)
+    let username = $('#username').val()
+    username === "" ? username = "Guest" : username
+    Adapter.createGame(imageID, username)
   })
 }
 
