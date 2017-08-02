@@ -26,7 +26,10 @@ class GamesController < ApplicationController
   end
 
   def update
-
+    data = JSON.parse(params[:gameObj])
+    gameID = data["id"]
+    @game = Game.find(gameID)
+    @game.update(data)
   end
 
   def destroy

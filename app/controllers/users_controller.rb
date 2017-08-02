@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def show
@@ -23,7 +23,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    byebug
+    data = JSON.parse(params[:userObj])
+    userID = data["id"]
+    @user = User.find(userID)
+    @user.update(data)
   end
 
   def destroy

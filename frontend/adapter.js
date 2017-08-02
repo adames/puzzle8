@@ -32,8 +32,17 @@ class Adapter {
 
   static postUserUpdate(userObj){
     var data = new FormData();
-    data.append( "username", JSON.stringify('HELLO'));
-    return fetch(`http://localhost:3000/users/1`, {
+    data.append( "userObj", JSON.stringify(userObj));
+    return fetch(`http://localhost:3000/users/${userObj.id}`, {
+      method: 'PATCH',
+      body: data
+    }).then(res => res.json())
+  }
+
+  static postGameUpdate(gameObj){
+    var data = new FormData();
+    data.append( "gameObj", JSON.stringify(gameObj));
+    return fetch(`http://localhost:3000/games/${gameObj}`, {
       method: 'PATCH',
       body: data
     }).then(res => res.json())
@@ -41,6 +50,10 @@ class Adapter {
 
   static postDbUpdate(){
     let userObj = store.users[store.users.length - 1]
-    let something = Adapter.postUserUpdate(userObj)
+    Adapter.postUserUpdate(userObj)
+
+    let gameObj = store.games[store.games.length - 1]
+    Adapter.postGameUpdate(gameObj)
+
   }
 }
