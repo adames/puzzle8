@@ -44,7 +44,7 @@ function showGame(id){
 
 
 function tileEvent(){
-  $('div').on('click', function(event){
+  $('.tile').on('click', function(event){
     makeMove()
   })
 }
@@ -107,8 +107,8 @@ function checkSolution(){
 function finishGame(){
   store.users[store.users.length - 1].wins++
   Adapter.postDbUpdate()
-  $('#game_finish').fadeToggle()
-  $('table').fadeToggle()
+  $('table').fadeToggle(500)
+  $('#game_finish').delay(500).fadeToggle(500)
   store = {games: [], images: [], users: []}
 }
 
