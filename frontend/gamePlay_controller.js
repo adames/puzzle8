@@ -109,7 +109,14 @@ function finishGame(){
   Adapter.postDbUpdate()
   $('table').fadeToggle(500)
   $('#game_finish').delay(500).fadeToggle(500)
+  restartGame()
   store = {games: [], images: [], users: []}
+}
+
+function restartGame(){
+  $("#restart").on('click', function(){
+    window.location.reload(true)
+  })
 }
 
 function swapDOM(){
