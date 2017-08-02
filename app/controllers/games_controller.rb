@@ -8,8 +8,8 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new
-    @gameImage = GameImage.find(params[:json])
-    @game.game_image = @gameImage
+    @image = Image.find(params[:json])
+    @game.image = @image
     @game.randomize_tiles
     @game.save
     render json: @game

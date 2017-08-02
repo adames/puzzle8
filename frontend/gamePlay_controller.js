@@ -38,8 +38,8 @@ function makeMove(){
 
 function getSolution(){
   let gameObj = store.games[store.games.length - 1]
-  let imgID = gameObj.game_image_id
-  let solution = store.gameImages.filter((image) => image.id === imgID)[0]
+  let imgID = gameObj.image_id
+  let solution = store.images.filter((image) => image.id === imgID)[0]
   // ^^ needs to be refactored into controller function ^^
   let userTiles = $('img')
   let counter = 0

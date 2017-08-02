@@ -15,8 +15,8 @@ class Render {
 
   static showImage(){
     let gameObj = store.games[store.games.length - 1]
-    let imgID = gameObj.game_image_id
-    let imgObj = store.gameImages.filter((image) => image.id === imgID)[0]
+    let imgID = gameObj.image_id
+    let imgObj = store.images.filter((image) => image.id === imgID)[0]
     gameObj.tiles_order = gameObj.tiles_order.match(/\d/g).map(n => parseInt(n))
     let tiles = $('img')
     let solution = []

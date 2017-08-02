@@ -1,8 +1,8 @@
-class GameImagesController < ApplicationController
+class ImagesController < ApplicationController
   def index
-    @game_images = GameImage.all
+    @images = Image.all
 #     msg = {:token => token, :courseId => courseId}
-    render :json => @game_images
+    render :json => @images
   end
 
   def create
@@ -19,8 +19,8 @@ class GameImagesController < ApplicationController
 
   def show
     @id = params[:id]
-    @game_image = GameImage.find(@id)
-    render :json => @game_image
+    @image = Image.find(@id)
+    render :json => @image
   end
 
   def update

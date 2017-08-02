@@ -1,10 +1,10 @@
 
 class Adapter {
   static getImage(id){
-    fetch(`http://localhost:3000/game_images/${id}`)
+    fetch(`http://localhost:3000/images/${id}`)
       .then(res => res.json())
       .then(function(res){
-        store.gameImages.push(res)
+        store.images.push(res)
         return res
       })
       .then(()=> Render.showImage())
@@ -23,7 +23,7 @@ class Adapter {
   }
 
   static getImages(){
-    return fetch(`http://localhost:3000/game_images/`)
+    return fetch(`http://localhost:3000/images/`)
       .then(res => res.json())
   }
 }
