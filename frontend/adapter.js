@@ -30,20 +30,17 @@ class Adapter {
       .then(res => res.json())
   }
 
-
-
-
   static postUserUpdate(userObj){
     var data = new FormData();
-    data.append( "userData", JSON.stringify('hello'));
-    fetch(`http://localhost:3000/users/1`, {
-      method: 'PUT',
+    data.append( "username", JSON.stringify('HELLO'));
+    return fetch(`http://localhost:3000/users/1`, {
+      method: 'PATCH',
       body: data
-    }).then(res => console.log(res))
+    }).then(res => res.json())
   }
 
   static postDbUpdate(){
     let userObj = store.users[store.users.length - 1]
-    Adapter.postUserUpdate(userObj)
+    let something = Adapter.postUserUpdate(userObj)
   }
 }
