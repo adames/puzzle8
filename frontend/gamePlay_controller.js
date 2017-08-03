@@ -2,7 +2,8 @@ $(function(){
   gameSetup()
 })
 
-let selected = "tile0"
+//blank tile is an id
+let blankTile;
 
 function gameSetup(){
   Render.hideGame()
@@ -47,6 +48,11 @@ function tileEvent(){
   $('.tile').on('click', function(event){
     makeMove()
   })
+  $(document).on('keyup', function(event){
+    if ([37, 38, 39, 40].includes(event.keyCode)){
+      arrowMove(event.keyCode)
+    }
+  })
 }
 
 function validMove(first, second){
@@ -69,19 +75,6 @@ function validMove(first, second){
     return true
   }else {
     return false
-  }
-}
-
-function makeMove(){
-  if(selected === 'tile0'){
-    selected = `${event.target.parentElement.id}`
-    event.target.className = "tile z-depth-5"
-    event.target.style.width = "160px"
-    event.target.style.height = "160px"
-    // event.target.style.borderColor = 'blue'
-  }else if(selected !== 'tile0'){
-    swapDOM()
-    selected = 'tile0'
   }
 }
 
@@ -121,10 +114,47 @@ function restartGame(){
   })
 }
 
-function swapDOM(){
-  let firstSelected = $(`#${selected}`)[0].children[0]
+function arrowMove(keyCode){
+  let firstSelected = $(`#${blankTile}`)[0]
+  let firstParent = $(`#${blankTile}`)[0].parentElement
+  let moveNum;
+  switch (keyCode) {
+    case 37:
+      moveNum = -1
+      break;
+    case 38:
+      moveNum = -3
+      break;
+    case 39:
+      moveNum = 1
+      break;
+    case 40:
+      moveNum = 3
+      break;
+    default:
+      console.log("something's messed")
+
+  }
+  //grab first parent, and find second parent using movement
+  let secondParent = $(`#space${parseInt(firstParent.id.replace('space','')) + moveNum}`)[0]
+  if (secondParent){
+    let secondSelected = secondParent.lastElementChild
+
+    if(validMove(firstSelected, secondSelected)){
+      firstParent.append(secondSelected)
+      secondParent.append(firstSelected)
+      store.games[store.games.length - 1].moves++
+    }else {
+      console.log('Invalid Move: nah brahhh')
+    }
+    checkSolution()
+  }
+}
+
+function makeMove(){
+  let firstSelected = $(`#${blankTile}`)[0]
   let secondSelected = event.target
-  let firstParent = $(`#${selected}`)[0]
+  let firstParent = $(`#${blankTile}`)[0].parentElement
   let secondParent = event.target.parentElement
   if(validMove(firstSelected, secondSelected)){
     firstParent.append(secondSelected)
@@ -133,11 +163,5 @@ function swapDOM(){
   }else {
     console.log('Invalid Move: nah brahhh')
   }
-  firstSelected.className = 'tile'
-  secondSelected.className = 'tile'
-  firstSelected.style.width = '150px'
-  firstSelected.style.height = '150px'
-  secondSelected.style.width = '150px'
-  secondSelected.style.height = '150px'
   checkSolution()
 }

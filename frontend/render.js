@@ -23,10 +23,12 @@ class Render {
     let tiles = $('.tile')
     let solution = []
     for (var i = 0; i < tiles.length; i++) {
-      if(gameObj.tiles_order[i] !== 9){
-        tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
-      }else{
+      if(gameObj.tiles_order[i] === 9){
         tiles[i].style.backgroundColor = "black"
+        blankTile = tiles[i].id
+
+      }else{
+        tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
       }
     }
     checkSolution()
