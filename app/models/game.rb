@@ -157,19 +157,23 @@ end
 
 
 
-def order_boards(arr2solve)
+def order_boards(arr2solve, hint)
+  # byebug
   boards = possible_boards(arr2solve)
   #updated_boards = boards.select{|board| !previous_boards.include?(board)}
   man_boards = boards.map{|board| manhattan_distance(board)}
   lowest_board = boards[man_boards.index(man_boards.min)]
   sorted_board = boards.each_with_index.map{|board, i| [board, man_boards[i]]}
   sorted_board.sort_by!{|arr| arr[1]}
-  return sorted_board
+  boards = sorted_board.map { |board, m| board }
+  boards.select { |board| hint.include?(board) }
+  # byebug
+  return boards
 end
 
 def check_board(board, arr, manhattan_distance, hold_tree)
   if board != [1, 2, 3, 4, 5, 6, 7, 8, 9] && arr.include?(board) == false && arr.include?([1, 2, 3, 4, 5, 6, 7, 8, 9]) == false
-    new_set = order_boards(board).select{|b, m| !arr.include?(b)}
+    new_set = order_boards([board], []).select{|b, m| !arr.include?(b)}
     sorted_board = new_set.sort_by!{|b, m| m}
     #make_sure_all_man_dis_same = sorted_board.map{|b, m| m}.uniq
     sorted_board.each do |b, m|
@@ -181,7 +185,7 @@ def check_board(board, arr, manhattan_distance, hold_tree)
           #p board
           check_board(b, arr, m, hold_tree)
         elsif b == [1, 2, 3, 4, 5, 6, 7, 8, 9]
-          #binding.pry
+          byebug
         end
       end
     end
@@ -190,8 +194,10 @@ end
 
 
 def start(arr2solve)
+  byebug
   arr = []
   hold_tree = []
+  byebug
   answer = check_board(arr2solve, arr, 13, hold_tree)
   #counter has no purpose just looks nice
   counter = 0
@@ -207,12 +213,13 @@ def start(arr2solve)
           #p counter
         elsif b == [1, 2, 3, 4, 5, 6, 7, 8, 9]
           # binding.pry
-          return true
+          byebug
+          # return true
         end
       elsif b == [1, 2, 3, 4, 5, 6, 7, 8, 9]
         # binding.pry
         byebug
-        return true
+        # return true
       end
     end
   end

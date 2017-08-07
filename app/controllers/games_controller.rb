@@ -30,8 +30,12 @@ class GamesController < ApplicationController
   end
 
   def hint
+    # byebug
     seq = JSON.parse(params[:seq])
-    @next_move = Game.last.order_boards(seq)[0][0]
+    hint = JSON.parse(params[:hint])
+    # seq[seq.index(9)] = 0
+    byebug
+    @next_move = Game.last.order_boards(seq, hint)[0]
     render json: @next_move
   end
 end
