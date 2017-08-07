@@ -39,6 +39,11 @@ class Adapter {
     })
   }
 
+  static getGameSolution(id){
+    return fetch(`http://localhost:3000/games/${id}/solution`)
+      .then(res => res.json())
+  }
+
   static postGameUpdate(gameObj){
     var data = new FormData();
     data.append( "gameObj", JSON.stringify(gameObj));

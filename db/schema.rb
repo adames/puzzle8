@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170802142343) do
     t.integer "user_id"
     t.integer "moves", default: 0
     t.string "tiles_order"
+    t.string "solution"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["image_id"], name: "index_games_on_image_id"

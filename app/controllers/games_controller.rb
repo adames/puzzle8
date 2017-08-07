@@ -17,14 +17,6 @@ class GamesController < ApplicationController
     render json: @game
   end
 
-  def edit
-
-  end
-
-  def show
-
-  end
-
   def update
     data = JSON.parse(params[:gameObj])
     gameID = data["id"]
@@ -32,7 +24,11 @@ class GamesController < ApplicationController
     @game.update(data)
   end
 
-  def destroy
-
+  def solution
+    @game = Game.find(params[:id])
+    @tile_order = @game.tiles_order.scan(/\w/).map(&:to_i)
+    @solution = @game.a_star_search(@tile_order)
+    render json: @solution
   end
+
 end

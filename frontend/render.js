@@ -12,6 +12,7 @@ class Render {
   static hideGame(){
     $('table').hide()
     $('#game_finish').hide()
+    $('#game_buttons').hide()
   }
 
   static showImage(){

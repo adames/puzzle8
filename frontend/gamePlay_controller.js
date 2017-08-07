@@ -1,5 +1,7 @@
 $(function(){
   gameSetup()
+  restartGame()
+  nextMove()
 })
 
 //blank tile is an id
@@ -32,15 +34,21 @@ function startGame(imageID, username){
 
 function showGame(id){
   $('table').show()
+  $('#game_buttons').show()
   Render.removeStart()
   tileEvent()
 
+  //here we get the tiled image from backend
   let imageJSON = Adapter.getImage(id)
   imageJSON.then(function(res){
     store.images.push(res)
     return res
   })
   .then(()=> Render.showImage())
+
+  //here we  attempt to find a solution
+  Adapter.getGameSolution(store.games[store.games.length - 1].id)
+  .then(res => {store.games[store.games.length - 1].solution = res})
 }
 
 
@@ -108,9 +116,15 @@ function finishGame(){
   store = {games: [], images: [], users: []}
 }
 
+// Game button events
 function restartGame(){
   $("#restart").on('click', function(){
     window.location.reload(true)
+  })
+}
+function nextMove(){
+  $("#next_move").on('click', function(){
+    console.log('nextMove!')
   })
 }
 
