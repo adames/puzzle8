@@ -35,4 +35,10 @@ class GamesController < ApplicationController
   def destroy
 
   end
+
+  def hint
+    seq = JSON.parse(params[:seq])
+    @next_move = Game.last.order_boards(seq)[0][0]
+    render json: @next_move
+  end
 end

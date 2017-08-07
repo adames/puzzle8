@@ -54,6 +54,16 @@ class Adapter {
 
     let gameObj = store.games[store.games.length - 1]
     Adapter.postGameUpdate(gameObj)
+  }
 
+  static postHint(arr){
+    var data = new FormData();
+    data.append( "seq", JSON.stringify(arr));
+    return fetch('http://localhost:3000/games/hint/', {
+      method: 'POST',
+      body: data
+    })
+    .then(res => res.json())
+    .then(res => tst(res))
   }
 }

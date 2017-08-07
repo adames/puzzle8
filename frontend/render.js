@@ -11,10 +11,12 @@ class Render {
   }
   static hideGame(){
     $('table').hide()
+    $('#hint').hide()
     $('#game_finish').hide()
   }
 
   static showImage(){
+    $('#hint').show()
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
     let imgObj = store.images.filter((image) => image.id === imgID)[0]
@@ -24,13 +26,14 @@ class Render {
     let solution = []
     for (var i = 0; i < tiles.length; i++) {
       if(gameObj.tiles_order[i] === 9){
+        tiles[i].src = ""
         tiles[i].style.backgroundColor = "black"
         blankTile = tiles[i].id
-
       }else{
         tiles[i].src = imgObj[`tile${gameObj.tiles_order[i]}`]
       }
     }
     checkSolution()
   }
+
 }
