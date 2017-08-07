@@ -37,8 +37,12 @@ function showGame(id){
   $('#game_buttons').show()
   Render.removeStart()
   tileEvent()
+<<<<<<< HEAD
 
   //here we get the tiled image from backend
+=======
+  hint_button()
+>>>>>>> 624cc09f2bfd1881c5f6f96ee7e907d26f25afe3
   let imageJSON = Adapter.getImage(id)
   imageJSON.then(function(res){
     store.images.push(res)
@@ -155,6 +159,7 @@ function arrowMove(keyCode){
     let secondSelected = secondParent.lastElementChild
 
     if(validMove(firstSelected, secondSelected)){
+      movesIntoStore(firstSelected, secondSelected)
       firstParent.append(secondSelected)
       secondParent.append(firstSelected)
       store.games[store.games.length - 1].moves++
@@ -165,12 +170,20 @@ function arrowMove(keyCode){
   }
 }
 
+function movesIntoStore(first, second){
+  let tile_order = store.games[store.games.length - 1].tiles_order
+  let firstInt = parseInt(first.id.replace("tile", "")) - 1
+  let secondInt = parseInt(second.id.replace("tile", "")) - 1
+  let swapTiles = [tile_order[secondInt], tile_order[firstInt]] = [tile_order[firstInt], tile_order[secondInt]]
+}
+
 function makeMove(){
   let firstSelected = $(`#${blankTile}`)[0]
   let secondSelected = event.target
   let firstParent = $(`#${blankTile}`)[0].parentElement
   let secondParent = event.target.parentElement
   if(validMove(firstSelected, secondSelected)){
+    movesIntoStore(firstSelected, secondSelected)
     firstParent.append(secondSelected)
     secondParent.append(firstSelected)
     store.games[store.games.length - 1].moves++

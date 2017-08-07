@@ -31,4 +31,12 @@ class GamesController < ApplicationController
     render json: @solution
   end
 
+<<<<<<< HEAD
+=======
+  def hint
+    seq = JSON.parse(params[:seq])
+    @next_move = Game.last.order_boards(seq)[0][0]
+    render json: @next_move
+  end
+>>>>>>> 624cc09f2bfd1881c5f6f96ee7e907d26f25afe3
 end
