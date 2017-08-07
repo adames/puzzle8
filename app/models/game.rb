@@ -6,6 +6,7 @@ class Game < ApplicationRecord
     self.tiles_order = (1..9).to_a.shuffle
   end
 
+#a_star_search adames built
   # finds path to correct tiles order
   def a_star_search(tiles_order)
     tree = []
@@ -89,6 +90,7 @@ class Game < ApplicationRecord
     leaves.delete_at(cheapest_index)
     return cheapest_leaf
   end
+#adames' changes end here
 
   # require 'pry'
 # require 'measurable'
