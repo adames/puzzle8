@@ -37,12 +37,9 @@ function showGame(id){
   $('#game_buttons').show()
   Render.removeStart()
   tileEvent()
-<<<<<<< HEAD
 
   //here we get the tiled image from backend
-=======
   hint_button()
->>>>>>> 624cc09f2bfd1881c5f6f96ee7e907d26f25afe3
   let imageJSON = Adapter.getImage(id)
   imageJSON.then(function(res){
     store.images.push(res)
