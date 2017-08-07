@@ -6,7 +6,6 @@ class Game < ApplicationRecord
     self.tiles_order = (1..9).to_a.shuffle
   end
 
-<<<<<<< HEAD
   # finds path to correct tiles order
   def a_star_search(tiles_order)
     tree = []
@@ -207,7 +206,6 @@ def start(arr2solve)
           #p counter
         elsif b == [1, 2, 3, 4, 5, 6, 7, 8, 9]
           # binding.pry
-          byebug
           return true
         end
       elsif b == [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -218,7 +216,6 @@ def start(arr2solve)
     end
   end
 
-  byebug
 end
 
 # start(arr2solve)
@@ -242,6 +239,4 @@ end
   #     end
   #   end
   # end
-
->>>>>>> 624cc09f2bfd1881c5f6f96ee7e907d26f25afe3
 end
