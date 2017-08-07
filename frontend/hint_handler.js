@@ -8,8 +8,9 @@ function hint_button(){
 
 
 function tst(res){
-  debugger;
+  // debugger;
   let game = store.games[store.games.length - 1]
+  game.hints.push(res)
   let tile_order = store.games[store.games.length - 1].tiles_order
   store.games[store.games.length - 1].tiles_order = String("[" + res + "]")
   Render.showImage()

@@ -28,7 +28,9 @@ function startGame(imageID, username){
   return res
   })
   .then((res)=> Adapter.postGame(imageID, res)
-  .then(res => {store.games.push(res)})
+  .then(res => {
+    store.games.push(res)
+    store.games[store.games.length - 1].hints = []})
   .then(()=> showGame(imageID)))
 }
 

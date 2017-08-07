@@ -64,6 +64,7 @@ class Adapter {
   static postHint(arr){
     var data = new FormData();
     data.append( "seq", JSON.stringify(arr));
+    data.append( "hint", JSON.stringify(store.games[store.games.length - 1].hints));
     return fetch('http://localhost:3000/games/hint/', {
       method: 'POST',
       body: data
