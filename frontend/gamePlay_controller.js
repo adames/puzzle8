@@ -1,7 +1,6 @@
 $(function(){
   gameSetup()
   restartGame()
-  nextMove()
 })
 
 //blank tile is an id
@@ -49,7 +48,22 @@ function showGame(id){
 
   //here we  attempt to find a solution
   Adapter.getGameSolution(store.games[store.games.length - 1].id)
-  .then(res => {store.games[store.games.length - 1].solution = res})
+  .then(res => setSolutionBtn(res))
+}
+
+function setSolutionBtn(solution){
+  let current = store.games[store.games.length - 1].tiles_order
+
+  if (solution && current){
+    current = solution.find(x => current.toString == x.toString)
+    let steps = solution.slice(solution.indexOf(current))
+    $('#next_move').show();
+    let i = 0 //increments clicks to solution
+    $('#next_move').on('click', function(event){
+      ++i
+      tst(steps[i])
+    });
+  }
 }
 
 
@@ -121,11 +135,6 @@ function finishGame(){
 function restartGame(){
   $("#restart").on('click', function(){
     window.location.reload(true)
-  })
-}
-function nextMove(){
-  $("#next_move").on('click', function(){
-    console.log('nextMove!')
   })
 }
 

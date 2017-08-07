@@ -16,7 +16,7 @@ class Game < ApplicationRecord
     leaf = build_leaf(tiles_order, {tiles_order: nil, branch: []})
 
     i = 0
-    while i < 10000 && leaf[:tiles_order] != solution
+    while i < 6000 && leaf[:tiles_order] != solution
       i += 1
       tree << leaf[:tiles_order]
       new_buds = neighbor_boards(leaf[:tiles_order])
@@ -118,26 +118,26 @@ def new_pos(x)
 end
 
 
-def manhattan_distance(arr2solve)
-  manhut = 0
-  sol = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  # Measurable.minkowski
-
-  arr2solve.each do |x|
-    solIndex = sol.index(x) + 1
-    arrIndex = arr2solve.index(x) + 1
-    arr_distance = (solIndex - arrIndex).abs
-    remainder = arr_distance % 3
-
-    if solIndex != arrIndex && x != 9
-      #p"final = #{(arr_distance / 3) + (arr_distance % 3)},for #{x}"
-      manhut += (arr_distance / 3) + (arr_distance % 3)
-    else
-      #p 'same pos or nine'
-    end
-  end
-  return manhut
-end
+# def manhattan_distance(arr2solve)
+#   manhut = 0
+#   sol = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#   # Measurable.minkowski
+#
+#   arr2solve.each do |x|
+#     solIndex = sol.index(x) + 1
+#     arrIndex = arr2solve.index(x) + 1
+#     arr_distance = (solIndex - arrIndex).abs
+#     remainder = arr_distance % 3
+#
+#     if solIndex != arrIndex && x != 9
+#       #p"final = #{(arr_distance / 3) + (arr_distance % 3)},for #{x}"
+#       manhut += (arr_distance / 3) + (arr_distance % 3)
+#     else
+#       #p 'same pos or nine'
+#     end
+#   end
+#   return manhut
+# end
 
 
 
