@@ -19,9 +19,10 @@ class Render {
   }
 
   static showImage(){
+    debugger
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
-    let imgObj = store.images.filter((image) => image.id === imgID)[0]
+    let imgObj = store.images[store.images.length - 1]
     $('#full_image')[0].src = imgObj.full_image
     gameObj.tiles_order = gameObj.tiles_order.match(/\d/g).map(n => parseInt(n))
     let tiles = $('.tile')

@@ -10,14 +10,14 @@ $(function start(){
 
 //find/create image and user objects - Controller
 function startGame(imageId, userName){
-  // Find or create user object
-  let userObj = Adapter.postUser(userName, imageId)
-  userObj.then(res => {
+  // Find or create userObj, then gameObj in fetch thens because of promise async
+  // NEED to add image obj to store in order to use in Render.showImage() later
+  Adapter.postUser(userName, imageId)
+  .then(res => {
     store.users.push(res)
     return res })
-  .then(Adapter.postGame(imageId, userObj.id))
+  .then(res => Adapter.postGame(imageId, res.id))
   .then(res => store.games.push(res))
-  // Start board
   .then(res => showGame(imageId))
 }
 
@@ -26,7 +26,7 @@ function showGame(id){
   $('#game_buttons').show()
   Render.removeStart()
   Events.moveTiles()
-
+  Render.showImage()
   Adapter.getGameSolution(store.games[store.games.length - 1].id)
   .then(res => Events.setSolutionBtn(res))
 }
@@ -138,7 +138,6 @@ function movesIntoStore(first, second){
 
 function updateTilesOrder(res){
   let game = store.games[store.games.length - 1]
-  // game.hints.push(res)
   let tile_order = store.games[store.games.length - 1].tiles_order
   store.games[store.games.length - 1].tiles_order = String("[" + res + "]")
   Render.showImage()
