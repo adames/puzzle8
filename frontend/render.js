@@ -11,7 +11,6 @@ class Render {
   }
   static hideBoard(){
     $('table').hide()
-    // $('#hint').hide()
   }
   static hideButtons(){
     $('#game_buttons').hide()
@@ -20,7 +19,6 @@ class Render {
   }
 
   static showImage(){
-    // $('#hint').show()
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
     let imgObj = store.images.filter((image) => image.id === imgID)[0]

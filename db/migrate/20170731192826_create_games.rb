@@ -6,7 +6,6 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.integer :moves, default: 0
       t.string :tiles_order
       t.string :solution
-      # t.string :hints
       t.timestamps
     end
   end

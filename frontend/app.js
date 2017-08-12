@@ -19,26 +19,14 @@ function startGame(imageId, userName){
   .then(res => store.games.push(res))
   // Start board
   .then(res => showGame(imageId))
-  // store.games[store.games.length - 1].hints = []
 }
 
-//show tile game - Controller
 function showGame(id){
   $('table').show()
   $('#game_buttons').show()
   Render.removeStart()
   Events.moveTiles()
 
-  // //here we get the tiled image from backend
-  // hint_button()
-  // let imageJSON = Adapter.getImage(id)
-  // imageJSON.then(function(res){
-  //   store.images.push(res)
-  //   return res
-  // })
-  // .then(()=> Render.showImage())
-
-  //here we  attempt to find a solution
   Adapter.getGameSolution(store.games[store.games.length - 1].id)
   .then(res => Events.setSolutionBtn(res))
 }
