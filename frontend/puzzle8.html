@@ -2,16 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>puzzle8</title>
     <script
     src="http://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
     <script src="app.js" charset="utf-8"></script>
     <script src="render.js" charset="utf-8"></script>
-    <script src="gamePlay_controller.js" charset="utf-8"></script>
     <script src="adapter.js" charset="utf-8"></script>
-    <script src="hint_handler.js" charset="utf-8"></script>
+    <script src="eventsHandler.js" charset="utf-8"></script>
+    <!-- <script src="hint_handler.js" charset="utf-8"></script> -->
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,14 +26,13 @@
   <body>
     <div class="row">
       <div class="col s6 offset-s3" id="imageIndex">
+        <label for="username" placeholder="">Your Name</label>
         <input type="text" id="username" placeholder="Guest">
 
-        <center><h3>Click an image to begin</h3></center>
+        <center><h3>select image to puzzle on</h3></center>
       </div>
     </div>
     <div class="row">
-      <div class="col s4">
-      </div>
     <div class="col s4">
       <table class="centered">
         <tr class="row1">
@@ -89,8 +88,6 @@
         </tr>
       </table>
     </div>
-    <div class="col s4">
-    </div>
   </div>
   <div class="row">
     <div class="col s4 offset-s4"id="game_finish">
@@ -100,7 +97,7 @@
     <div class="col s6 offset-s6"id="game_buttons">
       <button class="waves-effect waves-light btn" type="button" name="button" id="restart">Restart?</button>
       <button class="waves-effect waves-light btn" type="button" name="button" id="next_move">Next Move?</button>
-      <button class="waves-effect waves-light btn" type="button" name="button" id="hint">Hint!</button>
+      <!-- <button class="waves-effect waves-light btn" type="button" name="button" id="hint">Hint!</button> -->
     </div>
   </div>
   </body>

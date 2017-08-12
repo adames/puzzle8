@@ -1,24 +1,7 @@
-# README
+# puzzle8
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+developed using: ruby 2.4.1p111, Rails 5.1.2, and Javascript
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+* forked from Shuffler - https://github.com/jeetds1994/shuffler
+* a student project developed by Adames Hodelin, Diljeet Singh, and Trey Boyer at //Flatiron School
 * ...

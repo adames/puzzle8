@@ -5,9 +5,10 @@ class GamesController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.find(params[:userID])
     @game = Game.new
-    @image = Image.find(params[:imageID])
+    @image = Image.find(params[:imageId])
     @game.image = @image
     @game.randomize_tiles
     @user.games << @game
@@ -29,13 +30,11 @@ class GamesController < ApplicationController
     render json: @solution
   end
 
-  def hint
-    # byebug
-    seq = JSON.parse(params[:seq])
-    hint = JSON.parse(params[:hint])
-    # seq[seq.index(9)] = 0
-    byebug
-    @next_move = Game.last.order_boards(seq, hint)[0]
-    render json: @next_move
-  end
+  # def hint
+  #   seq = JSON.parse(params[:seq])
+  #   hint = JSON.parse(params[:hint])
+  #   byebug
+  #   @next_move = Game.last.order_boards(seq, hint)[0]
+  #   render json: @next_move
+  # end
 end

@@ -3,22 +3,24 @@ class Render {
     res.forEach(function(image){
       $('#imageIndex').append(`<img class="z-depth-2" id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
     })
-    selectImage()
+    Events.startGameonClick()
   }
 
   static removeStart(){
     $('#imageIndex').remove()
   }
-  static hideGame(){
+  static hideBoard(){
     $('table').hide()
-    $('#hint').hide()
+    // $('#hint').hide()
+  }
+  static hideButtons(){
+    $('#game_buttons').hide()
     $('#next_move').hide()
     $('#game_finish').hide()
-    $('#game_buttons').hide()
   }
 
   static showImage(){
-    $('#hint').show()
+    // $('#hint').show()
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
     let imgObj = store.images.filter((image) => image.id === imgID)[0]

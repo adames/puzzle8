@@ -5,10 +5,10 @@ class Adapter {
       .then(res => res.json())
   }
 
-  static postGame(imageID, username){
-    let userID = store.users.filter(function(user){return user.name === username.name})[0].id
+  static postGame(imageId, username){
+    let userID = store.users[store.users.length - 1].id
     var data = new FormData();
-    data.append( "imageID", JSON.stringify(imageID));
+    data.append( "imageId", JSON.stringify(imageId));
     data.append( "userID", JSON.stringify(userID));
     return fetch(`http://localhost:3000/games/`, {
       method: 'POST',
@@ -16,7 +16,7 @@ class Adapter {
     }).then(res => res.json())
   }
 
-  static postUser(username, imageID){
+  static postUser(username, imageId){
     var data = new FormData();
     data.append( "username", JSON.stringify(username));
     return fetch(`http://localhost:3000/users/`, {
@@ -61,15 +61,15 @@ class Adapter {
     Adapter.postGameUpdate(gameObj)
   }
 
-  static postHint(arr){
-    var data = new FormData();
-    data.append( "seq", JSON.stringify(arr));
-    data.append( "hint", JSON.stringify(store.games[store.games.length - 1].hints));
-    return fetch('http://localhost:3000/games/hint/', {
-      method: 'POST',
-      body: data
-    })
-    .then(res => res.json())
-    .then(res => tst(res))
-  }
+  // static postHint(arr){
+  //   var data = new FormData();
+  //   data.append( "seq", JSON.stringify(arr));
+  //   data.append( "hint", JSON.stringify(store.games[store.games.length - 1].hints));
+  //   return fetch('http://localhost:3000/games/hint/', {
+  //     method: 'POST',
+  //     body: data
+  //   })
+  //   .then(res => res.json())
+  //   .then(res => updateTilesOrder(res))
+  // }
 }

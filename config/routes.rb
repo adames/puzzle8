@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :images, only: [:show, :index]
 
   get '/games/:id/solution', to: 'games#solution'
-  post '/games/hint', to: 'games#hint'
+  # post '/games/hint', to: 'games#hint'
 end
