@@ -5,14 +5,15 @@ $(function start(){
   Render.hideBoard()
   Render.hideButtons()
   Adapter.getImages()
+    .then(res => {
+      store.images.push(...res)
+      return res })
     .then(res => Render.displayImages(res))
 })
 
 //find/create image and user objects - Controller
 function startGame(imageId, userName){
-  // Find or create userObj, then gameObj in fetch thens because of promise async
-  // NEED to add image obj to store in order to use in Render.showImage() later
-  Adapter.postUser(userName, imageId)
+  Adapter.postUser(userName)
   .then(res => {
     store.users.push(res)
     return res })
@@ -21,14 +22,21 @@ function startGame(imageId, userName){
   .then(res => showGame(imageId))
 }
 
-function showGame(id){
+function showGame(imageId){
   $('table').show()
   $('#game_buttons').show()
+  filterImageStoreById(imageId)
   Render.removeStart()
   Events.moveTiles()
   Render.showImage()
   Adapter.getGameSolution(store.games[store.games.length - 1].id)
   .then(res => Events.setSolutionBtn(res))
+}
+
+// Since we make api request for images,
+// I all to store then filter them here after selection.
+function filterImageStoreById(imageId){
+  store.images = store.images.filter(img => img.id === imageId)
 }
 
 function validMove(first, second){
@@ -63,11 +71,9 @@ function checkSolution(){
   let counter = 0
   for(var i = 0; i < userTiles.length - 1; i++) {
     if(eval(`solution.tile${i+1}`) === userTiles[i].src){
-      console.log('correct position')
       counter++
     }else {
       counter = 0
-      console.log('not correct position')
     }
   }
   if(counter === 8 && $('#space9')[0].children[0].style.backgroundColor === "black"){
@@ -109,7 +115,7 @@ function arrowMove(keyCode){
       moveNum = 3
       break;
     default:
-      console.log("something's messed")
+      console.warn("Error: arrowMove")
 
   }
   //grab first parent, and find second parent using movement
@@ -123,7 +129,7 @@ function arrowMove(keyCode){
       secondParent.append(firstSelected)
       store.games[store.games.length - 1].moves++
     }else {
-      console.log('Invalid Move: nah brahhh')
+      console.log('Invalid Move')
     }
     checkSolution()
   }

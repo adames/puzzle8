@@ -11,9 +11,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    userID = JSON.parse(params[:userObj].id)
-    @user = User.find(userID)
-    @user.update(data)
+    userObj = JSON.parse(params[:userObj])
+    @user = User.find(userObj['id'])
+    @user.update({wins: userObj['wins']})
+    render json: @user
   end
 
 end

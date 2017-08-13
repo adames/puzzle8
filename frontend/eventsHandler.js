@@ -11,7 +11,7 @@ class Events {
   }
 
   //sets image and username search parameters on click - Event
-  static startGameonClick(){
+  static startGameOnClick(){
     $('#imageIndex').on('click', function(event){
       var imageId = parseInt(event.target.id.replace("image", ""))
       let userName = $('#username').val()

@@ -3,7 +3,7 @@ class Render {
     res.forEach(function(image){
       $('#imageIndex').append(`<img class="z-depth-2" id=image${image.id} src=${image.full_image} style="width: 150px; height: 150px"></img>`)
     })
-    Events.startGameonClick()
+    Events.startGameOnClick()
   }
 
   static removeStart(){
@@ -19,7 +19,6 @@ class Render {
   }
 
   static showImage(){
-    debugger
     let gameObj = store.games[store.games.length - 1]
     let imgID = gameObj.image_id
     let imgObj = store.images[store.images.length - 1]
