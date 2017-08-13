@@ -16,8 +16,8 @@ class GamesController < ApplicationController
   end
 
   def update
-    game_obj = JSON.parse(params[:game_obj])
-    game_id = gameObj['id']
+    game_obj = JSON.parse(params[:gameObj])
+    game_id = game_obj['id']
     @game = Game.find(game_id)
     @game.update({tiles_order: game_obj['tiles_order']})
     render json: @game

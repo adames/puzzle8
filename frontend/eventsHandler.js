@@ -1,15 +1,4 @@
 class Events {
-  static moveTiles(){
-    $('.tile').on('click', function(event){
-      makeMove()
-    })
-    $(document).on('keyup', function(event){
-      if ([37, 38, 39, 40].includes(event.keyCode)){
-        arrowMove(event.keyCode)
-      }
-    })
-  }
-
   //sets image and username search parameters on click - Event
   static startGameOnClick(){
     $('#imageIndex').on('click', function(event){
@@ -17,6 +6,17 @@ class Events {
       let userName = $('#username').val()
       userName === "" ? userName = "Guest" : userName
       startGame(imageId, userName)
+    })
+  }
+
+  static moveTiles(){
+    $('.tile').on('click', function(event){
+      Move.makeMove()
+    })
+    $(document).on('keyup', function(event){
+      if ([37, 38, 39, 40].includes(event.keyCode)){
+        Move.arrowMove(event.keyCode)
+      }
     })
   }
 
@@ -31,8 +31,15 @@ class Events {
       let i = 0 //increments clicks to solution
       $('#next_move').on('click', function(event){
         ++i
-        updateTilesOrder(steps[i])
+        Move.updateTilesOrder(steps[i])
       });
     }
+  }
+
+  // Game restart button event
+  static restartGame(){
+    $("#restart").on('click', function(){
+      window.location.reload(true)
+    })
   }
 }
